@@ -21,8 +21,8 @@ export default function MonthlyBarChart({ data }) {
           <BarChart data={data}>
             <defs>
               <linearGradient id="monbar" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#fde68a" />
-                <stop offset="100%" stopColor="#f59e0b" />
+                <stop offset="0%" stopColor="#b997ff" />
+                <stop offset="100%" stopColor="#3e0f8d" />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke={grid} />

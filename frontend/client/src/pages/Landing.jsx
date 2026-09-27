@@ -10,10 +10,11 @@ import {
   Activity,
   Sun,
   Moon,
+  TrendingUp,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useTheme } from "../context/ThemeContext.jsx";
-import OrbitingHabits from "../components/OrbitingHabits.jsx";
+import heroImage from "../assets/hero.png";
 
 const features = [
   {
@@ -74,8 +75,8 @@ export default function Landing() {
       </header>
 
       <section className="max-w-6xl mx-auto px-6 pt-10 md:pt-16 pb-16">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-6 items-center">
-          <div className="lg:col-span-8 text-center lg:text-left order-2 lg:order-1">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          <div className="text-center lg:text-left order-1">
             <div className="inline-flex items-center gap-1.5 chip mb-5 bg-brand-500/15 text-brand-700 dark:text-brand-300">
               <Sparkles size={12} />
               AI-powered habit coach
@@ -106,10 +107,44 @@ export default function Landing() {
                 I have an account
               </Link>
             </div>
+
+            <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2 text-xs text-muted">
+              <span className="inline-flex items-center gap-1.5">
+                <CheckCircle2 size={14} className="text-brand-500" />
+                Your data, your pace
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Sparkles size={14} className="text-brand-500" />
+                Thoughtful AI insights
+              </span>
+            </div>
           </div>
 
-          <div className="lg:col-span-4 order-1 lg:order-2 flex justify-center lg:-mr-36">
-            <OrbitingHabits />
+          <div className="order-2">
+            <div className="hero-visual relative isolate min-h-[340px] sm:min-h-[420px] overflow-hidden rounded-[2rem] flex items-center justify-center">
+              <div className="absolute inset-0 opacity-70 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(107,43,204,0.12),transparent_55%)]" />
+              <img
+                src={heroImage}
+                alt="A glowing violet layer lifting beneath a dark foundation"
+                className="relative z-0 w-[min(78%,340px)] drop-shadow-[0_18px_55px_rgba(107,43,204,0.2)]"
+              />
+              <div className="absolute top-5 left-5 z-10 glass-strong bg-black/60 rounded-2xl px-3.5 py-3">
+                <div className="text-[10px] uppercase tracking-[0.18em] text-faint">
+                  Today's focus
+                </div>
+                <div className="mt-1 flex items-center gap-2 text-sm font-medium text-white">
+                  <span className="w-2 h-2 rounded-full bg-brand-300 shadow-[0_0_12px_#b997ff]" />
+                  Small steps. Real change.
+                </div>
+              </div>
+              <div className="absolute bottom-5 right-5 z-10 glass-strong bg-black/60 rounded-2xl px-3.5 py-3 text-white">
+                <div className="flex items-center gap-2 text-xs text-white/65">
+                  <TrendingUp size={14} className="text-brand-300" />
+                  This week
+                </div>
+                <div className="mt-1 text-xl font-semibold">+24%</div>
+              </div>
+            </div>
           </div>
         </div>
 

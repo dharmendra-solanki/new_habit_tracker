@@ -7,7 +7,7 @@ export const celebrate = (origin = { x: 0.5, y: 0.6 }) => {
     startVelocity: 35,
     scalar: 0.9,
     origin,
-    colors: ["#fbbf24", "#fcd34d", "#f59e0b", "#fde68a", "#d97706"],
+    colors: ["#3e0f8d", "#6b2bcc", "#9566f2", "#b997ff", "#d8c2ff"],
   });
 };
 
@@ -20,14 +20,14 @@ export const celebrateBig = () => {
       angle: 60,
       spread: 55,
       origin: { x: 0 },
-      colors: ["#fbbf24", "#fcd34d", "#f59e0b"],
+      colors: ["#3e0f8d", "#6b2bcc", "#9566f2"],
     });
     confetti({
       particleCount: 4,
       angle: 120,
       spread: 55,
       origin: { x: 1 },
-      colors: ["#fbbf24", "#fcd34d", "#f59e0b"],
+      colors: ["#3e0f8d", "#6b2bcc", "#9566f2"],
     });
     if (Date.now() < end) requestAnimationFrame(frame);
   })();

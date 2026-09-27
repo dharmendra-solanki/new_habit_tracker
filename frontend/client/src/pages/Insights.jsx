@@ -30,7 +30,7 @@ import { weekKeysFor, streakFromKeys } from "../utils/dateHelpers.js";
 import { useTheme } from "../context/ThemeContext.jsx";
 
 const PIE_COLORS = [
-  "#f59e0b",
+  "#3e0f8d",
   "#fb923c",
   "#ef4444",
   "#ec4899",
@@ -321,7 +321,7 @@ export default function Insights() {
           className="absolute inset-0 pointer-events-none opacity-50"
           style={{
             background:
-              "radial-gradient(circle at 0% 0%, rgba(251,191,36,0.22), transparent 55%), radial-gradient(circle at 100% 100%, rgba(236,72,153,0.12), transparent 55%)",
+              "radial-gradient(circle at 0% 0%, rgba(107,43,204,0.22), transparent 55%), radial-gradient(circle at 100% 100%, rgba(62,15,141,0.14), transparent 55%)",
           }}
         />
 
@@ -439,8 +439,8 @@ export default function Insights() {
               <BarChart data={dailyData}>
                 <defs>
                   <linearGradient id="day-bar" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#fcd34d" />
-                    <stop offset="100%" stopColor="#d97706" />
+                    <stop offset="0%" stopColor="#b997ff" />
+                    <stop offset="100%" stopColor="#3e0f8d" />
                   </linearGradient>
                 </defs>
 
@@ -512,7 +512,7 @@ export default function Insights() {
                 />
 
                 <Bar dataKey="Last week" fill="#cbd5e1" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="This week" fill="#f59e0b" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="This week" fill="#6b2bcc" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

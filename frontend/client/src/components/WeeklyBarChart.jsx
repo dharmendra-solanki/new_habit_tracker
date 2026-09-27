@@ -23,8 +23,8 @@ export default function WeeklyBarChart({ data, title = "Last 7 days" }) {
           <BarChart data={data}>
             <defs>
               <linearGradient id="wkbar" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#fcd34d" />
-                <stop offset="100%" stopColor="#d97706" />
+                <stop offset="0%" stopColor="#b997ff" />
+                <stop offset="100%" stopColor="#3e0f8d" />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke={grid} />
