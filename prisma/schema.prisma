@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum HabitCategory {
+  HEALTH
+  FITNESS
+  LEARNING
+  MINDFULNESS
+  PRODUCTIVITY
+  SOCIAL
+  FINANCE
+  CREATIVE
+  OTHER
+}
+
+enum HabitFrequency {
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+enum AIInsightType {
+  WEEKLY
+  SUGGESTION
+  RECOVERY
+  CHAT
+  MORNING
+}
+
+model User {
+  id                String      @id @default(cuid())
+  name              String      @db.VarChar(80)
+  email             String      @unique @db.VarChar(254)
+  passwordHash      String      @db.VarChar(255)
+  avatar            String?     @db.VarChar(500)
+  morningMotivation Boolean     @default(false)
+  habits            Habit[]
+  aiInsights        AIInsight[]
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+}
+
+model Habit {
+  id          String         @id @default(cuid())
+  userId      String
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String         @db.VarChar(100)
+  description String         @default("") @db.VarChar(1000)
+  category    HabitCategory  @default(OTHER)
+  frequency   HabitFrequency @default(DAILY)
+  targetDays  Int            @default(7) @db.SmallInt
+  color       String         @default("#6366f1") @db.VarChar(7)
+  icon        String         @default("🎯") @db.VarChar(16)
+  isArchived  Boolean        @default(false)
+  sortOrder   Int            @default(0)
+  logs        HabitLog[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([userId, isArchived, sortOrder])
+}
+
+model HabitLog {
+  id            String   @id @default(cuid())
+  habitId       String
+  habit         Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+  completedDate DateTime @db.Date
+  notes         String   @default("") @db.VarChar(1000)
+  createdAt     DateTime @default(now())
+
+  @@unique([habitId, completedDate])
+  @@index([completedDate])
+}
+
+model AIInsight {
+  id          String        @id @default(cuid())
+  userId      String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type        AIInsightType
+  content     String        @db.Text
+  metadata    Json?
+  generatedAt DateTime      @default(now())
+  createdAt   DateTime      @default(now())
+
+  @@index([userId, type, generatedAt])
+}
+
+model AuthRateLimit {
+  key             String   @id @db.VarChar(64)
+  attempts        Int
+  windowStartedAt DateTime @db.Timestamptz(3)
+  updatedAt       DateTime @updatedAt
+
+  @@index([windowStartedAt])
+}
